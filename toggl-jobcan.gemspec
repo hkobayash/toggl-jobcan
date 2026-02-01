@@ -14,6 +14,8 @@ Gem::Specification.new do |spec|
   spec.description   = 'Sync toggl worktime to JobCan.'
   spec.homepage      = 'https://github.com/limitusus/toggl-jobcan'
   spec.license       = 'MIT'
+  spec.required_ruby_version = '>= 3.1'
+  spec.metadata['rubygems_mfa_required'] = 'true'
 
   spec.files = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
@@ -26,5 +28,4 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'thor'
   spec.add_dependency 'toggl-worktime', '~> 0.7.0', '>= 0.7.0'
   spec.add_dependency 'webdrivers'
-  spec.metadata['rubygems_mfa_required'] = 'true'
 end
