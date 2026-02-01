@@ -5,8 +5,7 @@ module Toggl
     # Jobcan client
     class Client
       attr_accessor :credentials
-      attr_reader :driver
-      attr_reader :toggl
+      attr_reader :driver, :toggl
 
       class JobcanLoginFailure < StandardError; end
 
@@ -27,14 +26,13 @@ module Toggl
       }.freeze
 
       def initialize(
-            credentials: nil,
-            options: Selenium::WebDriver::Chrome::Options.new,
-            toggl_worktime_config:,
-            dryrun: false
-          )
+        toggl_worktime_config:, credentials: nil,
+        options: Selenium::WebDriver::Chrome::Options.new,
+        dryrun: false
+      )
         @credentials = credentials
         options.add_argument('--headless')
-        @driver = Selenium::WebDriver.for :chrome, options: options
+        @driver = Selenium::WebDriver.for(:chrome, options:)
         @toggl = Toggl::Worktime::Driver.new(
           config: Toggl::Worktime::Config.new(path: toggl_worktime_config)
         )

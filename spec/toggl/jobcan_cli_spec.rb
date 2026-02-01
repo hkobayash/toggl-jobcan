@@ -93,7 +93,7 @@ RSpec.describe Toggl::Jobcan::Cli do
         allow_any_instance_of(cli_class).to receive(:jobcan) do
           JobcanMock.new
         end
-        allow_any_instance_of(cli_class).to receive(:register_day) do |_client, map, date|
+        allow_any_instance_of(cli_class).to receive(:register_day) do |_client, _map, date|
           args << date
         end
       end

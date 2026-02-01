@@ -6,8 +6,7 @@ module Toggl
   module Jobcan
     # Jobcan credentials manager
     class Credentials
-      attr_accessor :email
-      attr_accessor :password
+      attr_accessor :email, :password
 
       ATTRS = %i[email password].freeze
 
@@ -19,7 +18,7 @@ module Toggl
 
       class << self
         def load_config(path)
-          YAML.safe_load(File.open(path).read).transform_keys(&:to_sym)
+          YAML.safe_load(File.read(path)).transform_keys(&:to_sym)
         end
       end
 
