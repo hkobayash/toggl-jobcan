@@ -23,3 +23,6 @@ Security/Eval:
 
 Style/HashSyntax:
   EnforcedShorthandSyntax: never
+
+Style/FormatStringToken:
+  EnforcedStyle: unannotated
