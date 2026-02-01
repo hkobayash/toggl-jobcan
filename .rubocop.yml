@@ -20,3 +20,6 @@ Style/AccessModifierDeclarations:
 Security/Eval:
   Exclude:
     - spec/**/*.rb
+
+Style/HashSyntax:
+  EnforcedShorthandSyntax: never

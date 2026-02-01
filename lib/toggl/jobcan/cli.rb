@@ -15,8 +15,8 @@ module Toggl
       package_name 'toggl-jobcan'
       default_command :main
 
-      DEFAULT_JOBCAN_CREDENTIAL_FILE_PATH = "#{ENV.fetch('HOME', nil)}/.jobcan"
-      DEFAULT_TOGGL_WORKTIME_CONFIG_FILE_PATH = "#{ENV.fetch('HOME', nil)}/.toggl_worktime"
+      DEFAULT_JOBCAN_CREDENTIAL_FILE_PATH = "#{Dir.home}/.jobcan".freeze
+      DEFAULT_TOGGL_WORKTIME_CONFIG_FILE_PATH = "#{Dir.home}/.toggl_worktime".freeze
 
       desc(
         '[options] DATE [DATE...]',
@@ -78,7 +78,7 @@ module Toggl
 
             Date.parse(s)
           end
-          raise NoDayGivenError if @target_days.size.zero?
+          raise NoDayGivenError if @target_days.empty?
         end
 
         def prepare_jobcan
@@ -109,7 +109,7 @@ module Toggl
           day = @target_days.first
           y = day.year
           m = day.month
-          return if @target_days.all? { |d| d.year == y and d.month == m }
+          return if @target_days.all? { |d| (d.year == y) && (d.month == m) }
 
           raise DifferentYearMonthError, "Different year/month=#{d.year}/#{d.month}"
         end

@@ -59,12 +59,12 @@ RSpec.describe Toggl::Jobcan::Cli do
         ]
         expected_days_expr = expected_days.map do |d|
           "  - #{d}\n"
-        end.join('')
+        end.join
         expect(
           capture(:stdout) do
             cli_class.start(['--days', *days])
           end
-        ).to eq 'Target days:' + "\n" + expected_days_expr
+        ).to eq "Target days:\n#{expected_days_expr}"
       end
     end
 

@@ -5,8 +5,8 @@ module Toggl
     # Provides support methods for Toggl
     module TogglSupport
       def fetch_toggl_worktime(dates)
-        first_day = dates.sort.first
-        last_day = dates.sort.last
+        first_day = dates.min
+        last_day = dates.max
         @toggl.merge_multi!(first_day.year, first_day.month, first_day.day, last_day.day)
         @toggl.work_time_map
       end

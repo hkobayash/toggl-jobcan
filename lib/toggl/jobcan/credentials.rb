@@ -25,7 +25,7 @@ module Toggl
       private
 
       def attr_set(hash)
-        ATTRS.each { |k| send((k.to_s + '=').to_sym, hash[k]) }
+        ATTRS.each { |k| send("#{k}=".to_sym, hash[k]) }
       end
     end
   end
