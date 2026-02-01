@@ -13,6 +13,10 @@ Style/EvalWithLocation:
   Exclude:
     - spec/**/*.rb
 
+Style/DocumentDynamicEvalDefinition:
+  Exclude:
+    - spec/spec_helper.rb
+
 Style/AccessModifierDeclarations:
   Exclude:
     - spec/**/*.rb
