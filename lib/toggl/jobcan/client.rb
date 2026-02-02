@@ -5,8 +5,7 @@ module Toggl
     # Jobcan client
     class Client
       attr_accessor :credentials
-      attr_reader :driver
-      attr_reader :toggl
+      attr_reader :driver, :toggl
 
       class JobcanLoginFailure < StandardError; end
 
@@ -27,14 +26,13 @@ module Toggl
       }.freeze
 
       def initialize(
-            credentials: nil,
-            options: Selenium::WebDriver::Chrome::Options.new,
-            toggl_worktime_config:,
-            dryrun: false
-          )
+        toggl_worktime_config:, credentials: nil,
+        options: Selenium::WebDriver::Chrome::Options.new,
+        dryrun: false
+      )
         @credentials = credentials
         options.add_argument('--headless')
-        @driver = Selenium::WebDriver.for :chrome, options: options
+        @driver = Selenium::WebDriver.for(:chrome, options: options)
         @toggl = Toggl::Worktime::Driver.new(
           config: Toggl::Worktime::Config.new(path: toggl_worktime_config)
         )
@@ -77,7 +75,7 @@ module Toggl
       def navigate_to_attendance_modify_day(date)
         # https://ssl.jobcan.jp/employee/adit/modify?year=2018&month=3&day=14
         query_string = "year=#{date.year}&month=#{date.month}&day=#{date.day}"
-        @driver.navigate.to JOBCAN_URLS[:attendance_modify] + '?' + query_string
+        @driver.navigate.to "#{JOBCAN_URLS[:attendance_modify]}?#{query_string}"
       end
 
       def select_support_for(name)

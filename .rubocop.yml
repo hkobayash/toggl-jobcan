@@ -1,5 +1,6 @@
 AllCops:
-  TargetRubyVersion: 2.5
+  TargetRubyVersion: 3.1
+  NewCops: enable
 
 Metrics/AbcSize:
   Max: 20
@@ -12,10 +13,24 @@ Style/EvalWithLocation:
   Exclude:
     - spec/**/*.rb
 
+Style/DocumentDynamicEvalDefinition:
+  Exclude:
+    - spec/spec_helper.rb
+
 Style/AccessModifierDeclarations:
   Exclude:
     - spec/**/*.rb
 
 Security/Eval:
+  Exclude:
+    - spec/**/*.rb
+
+Style/HashSyntax:
+  EnforcedShorthandSyntax: never
+
+Style/FormatStringToken:
+  EnforcedStyle: unannotated
+
+Lint/ConstantDefinitionInBlock:
   Exclude:
     - spec/**/*.rb
